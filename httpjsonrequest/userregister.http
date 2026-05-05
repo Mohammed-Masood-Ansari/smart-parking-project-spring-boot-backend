@@ -1,0 +1,11 @@
+### Register User
+POST http://localhost:1997/auth/register
+Content-Type: application/json
+
+{
+  "name": "Masood",
+  "email": "masood@gmail.com",
+  "password": "abc12345",
+  "phone": "9876543210",
+  "roleId": 1
+}

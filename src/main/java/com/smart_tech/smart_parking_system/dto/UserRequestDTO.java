@@ -5,7 +5,13 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserRequestDTO {
 
 	@NotBlank(message = "Name is required")
@@ -27,94 +33,8 @@ public class UserRequestDTO {
 
     @NotNull(message = "Phone number is required")
     @Pattern(regexp = "^[6-9]\\d{9}$", message = "Invalid Indian phone number")
-	private Long phone;
+	private String phone;
     
-    @NotBlank(message = "Role is required")
+    @NotNull(message = "Role is required")
 	private Long roleId;
-
-	
-	public UserRequestDTO() {
-		super();
-	}
-
-
-	public UserRequestDTO(String name, String email, String password, Long phone, Long roleId) {
-		super();
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.phone = phone;
-		this.roleId = roleId;
-	}
-
-
-
-	public String getName() {
-		return name;
-	}
-
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-
-	public String getEmail() {
-		return email;
-	}
-
-
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-
-
-	public String getPassword() {
-		return password;
-	}
-
-
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-
-
-	public Long getPhone() {
-		return phone;
-	}
-
-
-
-	public void setPhone(Long phone) {
-		this.phone = phone;
-	}
-
-
-
-	public Long getRoleId() {
-		return roleId;
-	}
-
-
-
-	public void setRoleId(Long roleId) {
-		this.roleId = roleId;
-	}
-
-
-
-	@Override
-	public String toString() {
-		return "UserRequestDTO [name=" + name + ", email=" + email + ", password=" + password + ", phone=" + phone
-				+ ", roleId=" + roleId + "]";
-	}
-	
-	
-	
 }
