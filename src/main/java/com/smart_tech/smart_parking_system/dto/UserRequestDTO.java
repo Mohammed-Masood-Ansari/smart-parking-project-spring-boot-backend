@@ -25,10 +25,10 @@ public class UserRequestDTO {
     @NotBlank(message = "Password is required")
     @Size(min = 8, max = 15, message = "Password must be between 8 to 15 characters")
     @Pattern(
-    	    regexp = "^[a-zA-Z0-9]+$",
-    	    message = "Password must be alphanumeric (only letters and numbers)"
-    	)
-	private String password;
+        regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d@#$%^&+=]{8,15}$",
+        message = "Password must contain letters, numbers, and can include special characters"
+    )
+    private String password;
 	
 
     @NotNull(message = "Phone number is required")

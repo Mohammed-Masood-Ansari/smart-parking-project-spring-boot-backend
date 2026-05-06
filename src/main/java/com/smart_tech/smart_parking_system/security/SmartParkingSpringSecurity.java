@@ -21,17 +21,16 @@ public class SmartParkingSpringSecurity {
 	    return http
 	            .csrf(csrf -> csrf.disable())
 
-	            .sessionManagement(session -> 
-	                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-	            )
-
 	            .authorizeHttpRequests(auth -> auth
-	                .requestMatchers("/auth/**").permitAll()
+	            		.requestMatchers(
+	                            "/auth/**",
+	                            // Swagger endpoints
+	                            "/v3/api-docs/**",
+	                            "/swagger-ui/**",
+	                            "/swagger-ui.html"
+	                        ).permitAll()
 	                .anyRequest().authenticated()
 	            )
-
-	            .httpBasic(Customizer.withDefaults())
-
 	            .formLogin(form -> form.disable())
 
 	            .build();
@@ -42,4 +41,6 @@ public class SmartParkingSpringSecurity {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+    
+    
 }
