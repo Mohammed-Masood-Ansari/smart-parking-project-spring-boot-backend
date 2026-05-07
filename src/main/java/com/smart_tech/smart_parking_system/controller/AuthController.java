@@ -4,6 +4,9 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +18,7 @@ import com.smart_tech.smart_parking_system.dto.UserRequestDTO;
 import com.smart_tech.smart_parking_system.dto.UserResponseDTO;
 import com.smart_tech.smart_parking_system.entity.User;
 import com.smart_tech.smart_parking_system.map_struct.UserMapper;
+import com.smart_tech.smart_parking_system.security.JwtUtils;
 import com.smart_tech.smart_parking_system.service.AuthService;
 
 import jakarta.validation.Valid;
@@ -30,6 +34,11 @@ public class AuthController {
 	private final UserMapper userMapper;
 	
 	private final PasswordEncoder passwordEncoder;
+	
+	private final AuthenticationManager authenticationManager;
+
+	private final JwtUtils jwtUtils;
+
 	
 	@PostMapping(value = "/register")
 	public ResponseEntity<?> registerUserController(@RequestBody @Valid UserRequestDTO requestDTO){
@@ -55,8 +64,18 @@ public class AuthController {
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody @Valid LoginRequestDTO dto) {
+		
+		Authentication authentication =
+				authenticationManager.authenticate(
+						new UsernamePasswordAuthenticationToken(
+								dto.getEmail(),
+								dto.getPassword()
+						)
+				);
 
-	    String token = authService.login(dto);
+		String token =
+				jwtUtils.generateToken(dto.getEmail());
+
 
 	    return ResponseEntity.ok(Map.of(
 	            "token", token,
