@@ -20,5 +20,5 @@ public interface ParkingSlotRepository extends JpaRepository<ParkingSlot, Long> 
 
 	Optional<ParkingSlot> findFirstByStatusAndSlotType(SlotStatus status, VehicleType slotType);
 
-	boolean existsByVehicleAndStatus(Vehicle vehicle, BookingStatus status);
+//	boolean existsByVehicleAndStatus(Vehicle vehicle, BookingStatus status);
 }

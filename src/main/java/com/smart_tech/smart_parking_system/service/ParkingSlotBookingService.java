@@ -55,18 +55,18 @@ public class ParkingSlotBookingService {
                         new RuntimeException("Vehicle not found"));
 
         // Check active booking
-        boolean alreadyBooked =
-                parkingSlotRepository
-                        .existsByVehicleAndStatus(
-                                vehicle,
-                                BookingStatus.ACTIVE
-                        );
+//        boolean alreadyBooked =
+//                parkingSlotRepository
+//                        .existsByVehicleAndStatus(
+//                                vehicle,
+//                                BookingStatus.ACTIVE
+//                        );
 
-        if (alreadyBooked) {
-            throw new RuntimeException(
-                    "Vehicle already parked"
-            );
-        }
+//        if (alreadyBooked) {
+//            throw new RuntimeException(
+//                    "Vehicle already parked"
+//            );
+//        }
 
         // Find available slot
         ParkingSlot slot = parkingSlotRepository
