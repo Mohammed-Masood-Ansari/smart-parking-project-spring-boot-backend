@@ -6,8 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.smart_tech.smart_parking_system.entity.ParkingSlot;
-import com.smart_tech.smart_parking_system.entity.Vehicle;
-import com.smart_tech.smart_parking_system.enums.BookingStatus;
 import com.smart_tech.smart_parking_system.enums.SlotStatus;
 import com.smart_tech.smart_parking_system.enums.VehicleType;
 

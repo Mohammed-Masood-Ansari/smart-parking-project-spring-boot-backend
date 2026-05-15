@@ -43,7 +43,7 @@ public class SmartParkingSpringSecurity {
 								"/swagger-ui/**",
 								"/swagger-ui.html"
 						).permitAll()
-						.requestMatchers("/booking/**").hasRole("ADMIN")
+						.requestMatchers("/booking/**").hasAnyRole("USER", "ADMIN")
 						.requestMatchers("/vehicle/**").hasAnyRole("USER", "ADMIN")
 
 						.anyRequest().authenticated()
