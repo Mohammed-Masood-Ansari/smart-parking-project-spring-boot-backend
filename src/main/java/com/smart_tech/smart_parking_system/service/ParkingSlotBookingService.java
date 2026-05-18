@@ -14,6 +14,7 @@ import com.smart_tech.smart_parking_system.entity.ParkingSlot;
 import com.smart_tech.smart_parking_system.entity.User;
 import com.smart_tech.smart_parking_system.entity.Vehicle;
 import com.smart_tech.smart_parking_system.enums.BookingStatus;
+import com.smart_tech.smart_parking_system.enums.SlotStatus;
 import com.smart_tech.smart_parking_system.enums.VehicleType;
 import com.smart_tech.smart_parking_system.repository.BookingRepository;
 import com.smart_tech.smart_parking_system.repository.ParkingSlotRepository;
@@ -49,8 +50,11 @@ public class ParkingSlotBookingService {
 	                .orElseThrow(() ->
 	                        new RuntimeException("Slot is not Found"));
 
+	        System.out.println("Slot found: " + slot.getSlotNumber() + " with status: " + slot.getStatus());
+	        
 	        // Check slot availability
-	        if (slot.getStatus().equals("OCCUPIED")) {
+	        if (slot.getStatus()==SlotStatus.OCCUPIED) {
+	        	System.out.println("Slot is already occupied: " + slot.getSlotNumber());
 	            throw new RuntimeException("Slot already occupied");
 	        }
 
@@ -66,6 +70,11 @@ public class ParkingSlotBookingService {
 
 	            vehicle.setVehicleNumber(dto.getVehicleNumber());
 	            vehicle.setVehicleType(dto.getVehicleType());
+	            // NEW
+	            vehicle.setBrand(dto.getBrand());
+	            vehicle.setColor(dto.getColor());
+
+
 	            vehicle.setUser(user);
 
 	            vehicle = vehicleRepository.save(vehicle);

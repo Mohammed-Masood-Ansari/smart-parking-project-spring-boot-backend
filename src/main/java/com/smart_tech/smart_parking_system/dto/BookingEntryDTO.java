@@ -23,4 +23,9 @@ public class BookingEntryDTO {
 
 	@NotBlank(message = "Slot number is required")
 	private String slotNumber;
+	
+	 // NEW FIELDS
+    private String brand;
+
+    private String color;
 }
